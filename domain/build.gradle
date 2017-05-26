@@ -1,0 +1,33 @@
+apply plugin: 'java'
+
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = 1.7
+//noinspection GroovyUnusedAssignment
+targetCompatibility = 1.7
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
+dependencies {
+    def supportDependencies = rootProject.ext.supportDependencies
+    def openSourceDependencies = rootProject.ext.openSourceDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    provided openSourceDependencies.javaxAnnotation
+
+    compile openSourceDependencies.javaxInject
+    compile openSourceDependencies.rxJava
+    compile openSourceDependencies.arrow
+
+    testCompile testDependencies.junit
+    testCompile testDependencies.mockito
+    testCompile testDependencies.assertj
+    compile 'com.google.code.gson:gson:2.3'
+}

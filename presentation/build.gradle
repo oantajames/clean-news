@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+
+        applicationId globalConfiguration.getAt("androidApplicationId")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+        versionName globalConfiguration.getAt("androidVersionName")
+        testInstrumentationRunner globalConfiguration.getAt("testInstrumentationRunner")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'            //Some libraries have issues with this.
+        disable 'OldTargetApi'
+        //Lint gives this warning but SDK 20 would be Android L Beta.
+        disable 'IconDensities'             //For testing purpose. This is safe to remove.
+        disable 'IconMissingDensityFolder'  //For testing purpose. This is safe to remove.
+    }
+
+
+}
+
+dependencies {
+    def supportDependencies = rootProject.ext.supportDependencies
+    def openSourceDependencies = rootProject.ext.openSourceDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile project(':data')
+
+    compile supportDependencies.cardView
+    compile supportDependencies.recyclerView
+    compile supportDependencies.designSupport
+    compile openSourceDependencies.dagger
+    apt openSourceDependencies.daggerCompiler
+    compile openSourceDependencies.byteUnits
+    compile openSourceDependencies.javaxAnnotation
+    compile openSourceDependencies.rxJava
+    compile openSourceDependencies.rxAndroid
+    compile openSourceDependencies.rxBinding
+    compile supportDependencies.androidAnnotations
+    compile openSourceDependencies.butterKnife
+    compile openSourceDependencies.fresco
+    compile openSourceDependencies.finestWebView
+    compile openSourceDependencies.smartTabLibrary
+    compile openSourceDependencies.smartTabUtils
+    compile openSourceDependencies.twoWayView
+    apt openSourceDependencies.butterKnifeCompiler
+    compile openSourceDependencies.timber
+    testCompile testDependencies.junit
+}
+

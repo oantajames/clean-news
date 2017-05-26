@@ -1,0 +1,98 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    //Android
+    androidBuildToolsVersion = "25.0.2"
+    androidMinSdkVersion = 19
+    androidTargetSdkVersion = 25
+    androidCompileSdkVersion = 25
+
+    //Libraries
+    daggerVersion = '2.8'
+    butterKnifeVersion = '8.4.0'
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    gsonVersion = '2.3'
+    okHttpVersion = '2.5.0'
+    arrowVersion = '1.0.0'
+    timberVersion = '4.1.1'
+    leakCanaryVersion = '1.3.1'
+    securePrefferencesVersion = '0.1.4'
+    byteUnitsVersion = '0.9.1'
+    rxAdapterVersion = '2.3.0'
+    retrofitVersion = '2.1.0'
+    rxBindingVersion = '0.4.0'
+    rxJavaVersion = '2.0.2'
+    rxAndroidVersion = '2.0.1'
+    retroftiGsonConverterVersion = '2.1.0'
+    okHttpInterceptorVersion = '3.4.2'
+    frescoVersion = '1.3.0'
+    finestwebviewVersion = '1.2.7'
+    twoWayViewVersion = '0.1.4'
+
+    // Support Libraries
+    supportLibrariesVersion = '25.3.1'
+
+    //Testing
+    robolectricVersion = '3.1.1'
+    jUnitVersion = '4.12'
+    assertJVersion = '1.7.1'
+    mockitoVersion = '1.9.5'
+    dexmakerVersion = '1.0'
+    espressoVersion = '2.0'
+    testingSupportLibVersion = '0.1'
+
+
+    openSourceDependencies = [
+            daggerCompiler       : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger               : "com.google.dagger:dagger:${daggerVersion}",
+            butterKnife          : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterKnifeCompiler  : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+            rxJava               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            javaxAnnotation      : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            rxAdapter            : "com.squareup.retrofit2:adapter-rxjava2:${rxAdapterVersion}",
+            timber               : "com.jakewharton.timber:timber:${timberVersion}",
+            arrow                : "com.fernandocejas:arrow:${arrowVersion}",
+            retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            okHttp               : "com.squareup.okhttp:okhttp:${okHttpVersion}",
+            gson                 : "com.google.code.gson:gson:${gsonVersion}",
+            javaxInject          : "javax.inject:javax.inject:${javaxInjectVersion}",
+            leakCanary           : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+            rxBinding            : "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}",
+            securePrefferences   : "com.scottyab:secure-preferences-lib:${securePrefferencesVersion}",
+            byteUnits            : "com.jakewharton.byteunits:byteunits:${byteUnitsVersion}",
+            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retroftiGsonConverterVersion}",
+            okHttpInterceptor    : "com.squareup.okhttp3:logging-interceptor:${okHttpInterceptorVersion}",
+            fresco               : "com.facebook.fresco:fresco:${frescoVersion}",
+            finestWebView        : "com.thefinestartist:finestwebview:${finestwebviewVersion}",
+            twoWayView           : "org.lucasr.twowayview:twowayview:${twoWayViewVersion}",
+            smartTabLibrary      : "com.ogaclejapan.smarttablayout:library:1.6.1@aar",
+            smartTabUtils        : "com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar"
+    ]
+
+    supportDependencies = [
+            designSupport     : "com.android.support:design:${supportLibrariesVersion}",
+            recyclerView      : "com.android.support:recyclerview-v7:${supportLibrariesVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${supportLibrariesVersion}",
+            supportV4         : "com.android.support:support-v4:${supportLibrariesVersion}",
+            cardView          : "com.android.support:cardview-v7:${supportLibrariesVersion}",
+    ]
+
+    testDependencies = [
+            mockito          : "org.mockito:mockito-core:${mockitoVersion}",
+            dexmaker         : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
+            dexmakerMockito  : "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
+            espresso         : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            testingSupportLib: "com.android.support.test:testing-support-lib:${testingSupportLibVersion}",
+            junit            : "junit:junit:${jUnitVersion}",
+            assertj          : "org.assertj:assertj-core:${assertJVersion}",
+            robolectric      : "org.robolectric:robolectric:${robolectricVersion}",
+    ]
+
+
+}

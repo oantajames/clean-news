@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Base application theme. -->d
+
+    <style name="Theme.AppCompat.Light.NoActionBar" parent="@style/Theme.AppCompat.Light">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item> <!-- For 2.x version  -->
+    </style>
+
+    <style name="CardView.ListItem">
+        <item name="cardCornerRadius">3dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:clipChildren">false</item>
+    </style>
+
+
+    <style name="CardView.ToolBar" parent="CardView.Base">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">0dp</item>
+    </style>
+
+    <style name="CardView.Base" parent="CardView">
+        <item name="cardPreventCornerOverlap">true</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+
+    <!-- Blue app theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/bluePrimary</item>
+        <item name="colorPrimaryDark">@color/bluePrimaryDark</item>
+        <item name="colorAccent">@color/bluePrimaryLight</item>
+    </style>
+
+
+</resources>

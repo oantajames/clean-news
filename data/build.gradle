@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.2.3'
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    defaultPublishConfig "debug"
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion '25.0.0'
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'  // Some libraries have issues with this
+        disable 'OldTargetApi'
+        // Due to Robolectric that modifies the manifest when running tests
+    }
+    buildToolsVersion '25.0.0'
+}
+
+dependencies {
+    compile project(':domain')
+
+    compile openSourceDependencies.dagger
+    apt openSourceDependencies.daggerCompiler
+    compile openSourceDependencies.javaxAnnotation
+    compile openSourceDependencies.rxJava
+    compile openSourceDependencies.rxAndroid
+    compile openSourceDependencies.rxBinding
+    compile supportDependencies.androidAnnotations
+    compile openSourceDependencies.timber
+    compile openSourceDependencies.rxAdapter
+    compile openSourceDependencies.retrofit
+    compile openSourceDependencies.securePrefferences
+    compile openSourceDependencies.retrofitGsonConverter
+    compile supportDependencies.androidAnnotations
+    compile openSourceDependencies.okHttpInterceptor
+
+    testCompile testDependencies.junit
+    testCompile testDependencies.assertj
+    testCompile testDependencies.mockito
+    testCompile testDependencies.robolectric
+
+    compile 'com.github.tientun:retrofit-mock-response:1.0.0'
+}
